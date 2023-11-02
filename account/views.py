@@ -58,21 +58,20 @@ def enter_code(request):
                 user, is_created = User.objects.get_or_create(phone=code.phone)
                 login(request, user)
                 code.delete()
-                return redirect('home:home')
+                return redirect('account:register')
 
     return render(request, 'account/check_code.html', {'form': form, 'code': code.code})
 
 
 def register(request):
-    if request.user.is_anonymous:
-        form = RegisterForm()
-        if request.method == 'POST':
-            form = RegisterForm()
-            if form.is_valid():
-                form.save()
-                return redirect('home:home')
-    else:
-        return redirect('home:home')
+    user = request.user
+    form = RegisterForm(instance=user)
+    if request.method == 'POST':
+        form = RegisterForm(data=request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            login(request, user)
+            return redirect('home:home')
     return render(request, 'account/register.html', {'form': form})
 
 

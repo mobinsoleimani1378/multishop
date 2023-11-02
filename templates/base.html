@@ -44,7 +44,7 @@
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
-                        {{ request.user.fullname }}
+                        {% if request.user.is_authenticated %} {{ request.user.fullname }} {% else %} sign in / sign up {% endif %}
                     </button>
 
 
@@ -57,7 +57,6 @@
                         {% else %}
                             <a href="{% url 'account:enter_phone' %}" class="dropdown-item">enter phone</a>
                             <a href="{% url 'account:login' %}" class="dropdown-item">Sign in</a>
-                            <a href="{% url 'account:register' %}" class="dropdown-item">register</a>
                         {% endif %}
                     </div>
 
