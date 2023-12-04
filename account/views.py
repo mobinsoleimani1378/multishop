@@ -95,3 +95,4 @@ def address(request):
                 return redirect('account:address')
 
     return render(request, 'account/add_address.html', {'form': form})
+

@@ -17,6 +17,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.phone.errors }}
+
                 <div class="control-group">
                     <label for="">phone</label>
                     {{ form.phone|attr:'class:form_control' }}

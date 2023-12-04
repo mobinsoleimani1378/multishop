@@ -61,6 +61,7 @@ class EnterCodeForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
+    x = forms.CharField(max_length=12)
     class Meta:
         model = User
         fields = ('fullname', 'phone', 'email', 'password1', 'password2')
